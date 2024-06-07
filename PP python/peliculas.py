@@ -34,10 +34,14 @@ def eliminar_pelicula(lista_peliculas: list[dict]):
         print("Empleado inexistente")
 
 def mostrar_pelicula(pelicula: list[dict]):
+    if (pelicula["Clasificacion"]):
+        auxiliar = "Si"
+    else:
+        auxiliar = "No"
     print("***********************************************************************")
-    encabezado = "     Título      Género       Año lanzamiento       Duración     Clasificación"
+    encabezado = "     Título      Género       Año lanzamiento       Duración     ATP"
     print(encabezado)
-    print(f"{pelicula['Titulo']:>10}{pelicula['Genero']:>12}{pelicula['Año lanzamiento']:>12}{pelicula['Duracion']:>12}{pelicula['Clasificacion']:>12}")
+    print(f"{pelicula['Titulo']:>10}{pelicula['Genero']:>12}{pelicula['Año lanzamiento']:>12}{pelicula['Duracion']:>12}{auxiliar:>12}")
     print("***********************************************************************")
 
 def mostrar_todas(lista_peliculas: list[dict]):
@@ -98,10 +102,14 @@ def buscar_por_titulo(lista_empleados: list):
     while True:
         for pelicula in lista_empleados:
             if pelicula["Titulo"] == titulo_pelicula:
+                if (pelicula["Clasificacion"]):
+                    auxiliar = "Si"
+                else:
+                    auxiliar = "No"
                 print("***********************************************************************")
                 encabezado = "      Título       Género      Año de lanzamiento       Duración       ATP    "
                 print(encabezado)
-                print(f"{pelicula['Titulo']:>10}{pelicula['Genero']:>12}{pelicula['Año lanzamiento']:>12}{pelicula['Duracion']:>12}{pelicula['Clasificacion']:>12}")
+                print(f"{pelicula['Titulo']:>10}{pelicula['Genero']:>12}{pelicula['Año lanzamiento']:>12}{pelicula['Duracion']:>12}{auxiliar:>12}")
                 print("***********************************************************************")
                 break
             else:
@@ -111,22 +119,34 @@ def buscar_por_titulo(lista_empleados: list):
 
 def calcular(lista_peliculas: list[dict]):
     while True:
-        opcion = input("""¿Que desea calcular?\n1- Duración promedio de todas las peliculas\n2- Porcentaje de peliculas ATP\nElija una opción: """)
+        opcion = input("""¿Que desea calcular?\n1- Duración promedio de todas las peliculas\n2- Cantidad de peliculas lanzadas en cada año desde 2005 hasta 2024\nElija una opción: """)
 
         match opcion:
             case "1":
-                pass
-            
+                auxiliar = 0
+                for pelicula in range(len(lista_peliculas)):
+                    auxiliar += lista_peliculas[pelicula]["Duracion"]
+                
+                auxiliar_promedio = auxiliar / len(lista_peliculas)
+                print(f"La duracion promedio de todas las películas es: {auxiliar_promedio}")
+
             case "2":
                 pass
+        break
 
-def porcentaje(lista_empleados: list[dict]):
+def porcentaje(lista_peliculas: list[dict]):
     while True:
         opcion = input("""¿Que desea calcular?\n1- Porcentaje por genero\n2- Porcentaje de películas ATP\nElija una opción: """)
 
         match opcion:
             case "1":
                 pass
-
+            
             case "2":
-                pass
+                auxiliar = 0
+                for pelicula in range(len(lista_peliculas)):
+                    auxiliar += lista_peliculas[pelicula]["Clasificacion"]
+
+                auxiliar_porcentaje = (auxiliar / len(lista_peliculas)) * 100
+                print(f"EL {auxiliar_porcentaje}% de películas son ATP.")
+        break

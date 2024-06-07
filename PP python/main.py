@@ -34,7 +34,6 @@ while True:
         case "5":
             ordenar_peliculas(lista_peliculas)
         case "6":
-            system("cls")
             buscar_por_titulo(lista_peliculas)
         case "7":
             calcular(lista_peliculas)

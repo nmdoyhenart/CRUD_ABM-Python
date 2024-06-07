@@ -19,7 +19,7 @@ def ingresar_peliculas(lista_peliculas: list[dict]) -> None:
             print("ERROR")
             genero = input("Ingrese un genero válido: ").capitalize()
         
-        año_lanzamiento = int(input("Ingrese el año de lanzamiento: "))
+        año_lanzamiento = int(input("Ingrese el año de lanzamiento: ")) # isdigit
         while año_lanzamiento <= 1888 or año_lanzamiento >=  2024:
             print("ERROR")
             año_lanzamiento = int(input("Ingrese una fecha válida: "))
@@ -78,7 +78,7 @@ def modificar_peliculas(lista_peliculas: list[dict]):
                 modificaciones = True
                 
             case "3":
-                nuevo_año_lanzamiento = int(input("Ingrese el nuevo año de lanzamiento: "))
+                nuevo_año_lanzamiento = int(input("Ingrese el nuevo año de lanzamiento: ")) # isdigit
                 while nuevo_año_lanzamiento <=  1888 or nuevo_año_lanzamiento >=  2024:
                     print("ERROR")
                     nuevo_año_lanzamiento = int(input("Ingrese un DNI válido: "))
