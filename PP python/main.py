@@ -17,6 +17,7 @@ def elegir_opcion():
 lista_peliculas = [
     {"Titulo": "Inception","Genero": "Ciencia ficción","Año lanzamiento": 2010,"Duracion": 148,"Clasificacion": False},{"Titulo": "Coco","Genero": "Animación","Año lanzamiento": 2017,"Duracion": 109,"Clasificacion": True},{"Titulo": "The Godfather","Genero": "Crimen","Año lanzamiento": 1972,"Duracion": 175,"Clasificacion": False},{"Titulo": "Spider-Man","Genero": "Animación","Año lanzamiento": 2018,"Duracion": 117,"Clasificacion": True
     }]
+
 system("cls")
 
 while True:

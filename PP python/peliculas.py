@@ -4,7 +4,6 @@ Apellido: Doyhenart
 
 Parcial 07/03
 """""
-
 def crear_pelicula(id: int, titulo: str, genero: str, año_lanzamiento: int, duracion: int, clasificacion: bool):
     diccionario_empleado = {
         "ID": id,
@@ -34,14 +33,14 @@ def eliminar_pelicula(lista_peliculas: list[dict]):
         print("Empleado inexistente")
 
 def mostrar_pelicula(pelicula: list[dict]):
-    if (pelicula["Clasificacion"]):
+    if pelicula["Clasificacion"]:
         auxiliar = "Si"
     else:
         auxiliar = "No"
     print("***********************************************************************")
-    encabezado = "     Título      Género       Año lanzamiento       Duración     ATP"
+    encabezado = f"{'Título':<20}{'Género':<20}{'Año lanzamiento':<20}{'Duración':<10}{'ATP':<5}"
     print(encabezado)
-    print(f"{pelicula['Titulo']:>10}{pelicula['Genero']:>12}{pelicula['Año lanzamiento']:>12}{pelicula['Duracion']:>12}{auxiliar:>12}")
+    print(f"{pelicula['Titulo']:<20}{pelicula['Genero']:<20}{pelicula['Año lanzamiento']:<20}{pelicula['Duracion']:<10}{auxiliar:<5}")
     print("***********************************************************************")
 
 def mostrar_todas(lista_peliculas: list[dict]):
@@ -98,24 +97,26 @@ def ordenar_peliculas(lista_peliculas: list[dict]):
             break
 
 def buscar_por_titulo(lista_empleados: list):
-    titulo_pelicula = input("Ingrese el título de la pelicula que desee: ")
-    while True:
-        for pelicula in lista_empleados:
-            if pelicula["Titulo"] == titulo_pelicula:
-                if (pelicula["Clasificacion"]):
-                    auxiliar = "Si"
-                else:
-                    auxiliar = "No"
-                print("***********************************************************************")
-                encabezado = "      Título       Género      Año de lanzamiento       Duración       ATP    "
-                print(encabezado)
-                print(f"{pelicula['Titulo']:>10}{pelicula['Genero']:>12}{pelicula['Año lanzamiento']:>12}{pelicula['Duracion']:>12}{auxiliar:>12}")
-                print("***********************************************************************")
-                break
+    titulo_pelicula = input("Ingrese el título de la película que desee: ").capitalize()
+    encontrada = False
+
+    for pelicula in lista_empleados:
+        if pelicula["Titulo"].lower() == titulo_pelicula.lower():
+            encontrada = True
+            if (pelicula["Clasificacion"]):
+                auxiliar = "Si"
             else:
-                print("Película inexistente.")
-                break
-        break
+                auxiliar = "No"
+            print("***********************************************************************")
+            encabezado = f"{'Título':<20}{'Género':<20}{'Año de lanzamiento':<20}{'Duración':<10}{'ATP':<5}"
+            print(encabezado)
+            print(f"{pelicula['Titulo']:<20}{pelicula['Genero']:<20}{pelicula['Año lanzamiento']:<20}{pelicula['Duracion']:<10}{auxiliar:<5}")
+            print("***********************************************************************")
+            break
+        
+        else:
+            print("Película inexistente.")
+            break
 
 def calcular(lista_peliculas: list[dict]):
     while True:
