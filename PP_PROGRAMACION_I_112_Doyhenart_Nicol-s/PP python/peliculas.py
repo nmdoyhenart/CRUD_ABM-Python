@@ -132,7 +132,8 @@ def muestreo_peliculas(lista_peliculas: list[dict]):
                 mostrar_atp(lista_peliculas)
             case "5":
                 mostrar_no_atp(lista_peliculas)
-        
+            case  _:
+                print("Valor inexistente, ingrese una opción valida")
         break
 
 def ordenar_lista_ascendente(lista_peliculas: list[dict], llave: str):
@@ -199,6 +200,8 @@ def ordenar_peliculas(lista_peliculas: list[dict]):
                                 ordenar_lista_ascendente(lista_peliculas, "Duracion")
                             case "2":
                                 ordenar_lista_descendente(lista_peliculas, "Duracion")
+                    case  _:
+                        print("Valor inexistente, ingrese una opción valida")                                
             break
 
 def buscar_por_titulo(lista_peliculas: list[dict]):
@@ -267,7 +270,9 @@ def calcular(lista_peliculas: list[dict]):
 
                 resultado = años_peliculas(lista_peliculas, año_inicio, año_fin)
                 print(f"La cantidad de películas, en nuestro catálogo, entre {año_inicio} y {año_fin} son: {resultado}")
-
+            
+            case  _:
+                print("Valor inexistente, ingrese una opción valida")
         break
 
 def calcular_porcentaje_por_genero(lista_peliculas: list[dict]):
@@ -315,4 +320,7 @@ def porcentaje(lista_peliculas: list[dict]):
 
                 auxiliar_porcentaje = (auxiliar / len(lista_peliculas)) * 100
                 print(f"EL {auxiliar_porcentaje}% de películas son ATP.")
+                
+            case  _:
+                print("Valor inexistente, ingrese una opción valida")               
         break

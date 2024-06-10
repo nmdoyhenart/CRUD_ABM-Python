@@ -35,45 +35,45 @@ while True:
             ingresar_peliculas(lista_peliculas)
         case "2":
             if bandera_ingreso == False:
-                print("Ingrese una película para utilizar el menu.")
+                print("Ingrese, al menos, una película para utilizar el menu.")
             else:
                 modificar_peliculas(lista_peliculas)
         case "3":
             if bandera_ingreso == False:
-                print("Ingrese una película para utilizar el menu.")  
+                print("Ingrese, al menos, una película para utilizar el menu.")  
             else:          
                 eliminar_pelicula(lista_peliculas)
         case "4":
             system("cls")
             if bandera_ingreso == False:
-                print("Ingrese una película para utilizar el menu.")
+                print("Ingrese, al menos, una película para utilizar el menu.")
             else:            
                 muestreo_peliculas(lista_peliculas)
         case "5":
             if bandera_ingreso == False:
-                print("Ingrese una película para utilizar el menu.")
+                print("Ingrese, al menos, una película para utilizar el menu.")
             else:           
                 ordenar_peliculas(lista_peliculas)
         case "6":
             if bandera_ingreso == False:
-                print("Ingrese una película para utilizar el menu.")
+                print("Ingrese, al menos, una película para utilizar el menu.")
             else:          
                 buscar_por_titulo(lista_peliculas)
         case "7":
             if bandera_ingreso == False:
-                print("Ingrese una película para utilizar el menu.")
+                print("Ingrese, al menos, una película para utilizar el menu.")
             else:           
                 calcular(lista_peliculas)
         case "8":
             if bandera_ingreso == False:
-                print("Ingrese una película para utilizar el menu.") 
+                print("Ingrese, al menos, una película para utilizar el menu.") 
             else:           
                 porcentaje(lista_peliculas)
         case "9":
             print("Gracias por utilizar el programa CINE")
             break
         case  _:
-            print("Ingrese una opción valida")
+            print("Valor inexistente, ingrese una opción valida")
 
     system("pause")
     system("cls")

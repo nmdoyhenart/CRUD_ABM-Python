@@ -32,11 +32,11 @@ def ingresar_peliculas(lista_peliculas: list[dict]) -> None:
     while True:
         id = len(lista_peliculas) + 1
         titulo = input("Ingrese el título de la película: ").capitalize().strip()
-        # if titulo (" "):
-        #     print("No puede ingresar un titulo vacio.")
         
-        while len(titulo) > 30 or titulo_duplicado(lista_peliculas, titulo):
-            if len(titulo) > 30:
+        while not titulo or len(titulo) > 30 or titulo_duplicado(lista_peliculas, titulo):
+            if not titulo or titulo.isspace():
+                print("No puede ingresar un titulo en blanco.")
+            elif len(titulo) > 30:
                 print("El título es demasiado largo. Ingrese un título con menos de 30 caracteres.")
             elif titulo_duplicado(lista_peliculas, titulo):
                 print("El título ya existe. Ingrese un título diferente.")
@@ -103,30 +103,32 @@ def modificar_peliculas(lista_peliculas: list[dict]):
 
         match opcion_modificar:
             case "1":
-                nuevo_titulo = input("Ingrese el nuevo título de la película: ").capitalize().strip()
-        
-                while len(nuevo_titulo) > 30 or (nuevo_titulo != titulo_pelicula and titulo_duplicado(lista_peliculas, nuevo_titulo)):
-                    if len(nuevo_titulo) > 30:
-                        print("El título es demasiado largo.")
-                    elif nuevo_titulo != titulo_pelicula and titulo_duplicado(lista_peliculas, nuevo_titulo):
+                while True:
+                    nuevo_titulo = input("Ingrese el nuevo título de la película: ").capitalize().strip()
+                    if not nuevo_titulo or nuevo_titulo.isspace():
+                        print("No puede ingresar un título en blanco.")
+                    elif len(nuevo_titulo) > 30:
+                        print("El título es demasiado largo. Ingrese un título con menos de 30 caracteres.")
+                    elif titulo_duplicado(lista_peliculas, nuevo_titulo):
                         print("El título ya existe. Ingrese un título diferente.")
-                    nuevo_titulo = input("Ingrese un título válido: ").capitalize().strip()
-                pelicula_existente["Titulo"] = nuevo_titulo
-                modificaciones.append("-Título modificado exitosamente")
+                    else:
+                        pelicula_existente["Titulo"] = nuevo_titulo
+                        modificaciones.append("-Título modificado exitosamente")
+                        break
                 
             case "2":
                 nuevo_genero = input("Ingrese el nuevo género: ").capitalize().strip()
-                while nuevo_genero != generos:
+                while nuevo_genero not in generos:
                     print("ERROR")
                     nuevo_genero = input("Ingrese un género válido: ").capitalize().strip()
                 pelicula_existente["Genero"] = nuevo_genero
                 modificaciones.append("-Género modificado exitosamente")
 
             case "3":
-                nuevo_año_lanzamiento = int(input("Ingrese el nuevo año de lanzamiento: "))
+                nuevo_año_lanzamiento = input("Ingrese el nuevo año de lanzamiento: ")
                 while not nuevo_año_lanzamiento.isdigit() or not 1888 <= int(nuevo_año_lanzamiento) <= 2024:
                     print("ERROR")
-                    nuevo_año_lanzamiento = int(input("Ingrese un año válido: "))
+                    nuevo_año_lanzamiento = input("Ingrese un año válido: ")
                 pelicula_existente["Año lanzamiento"] = int(nuevo_año_lanzamiento)
                 modificaciones.append("-Año de lanzamiento modificado exitosamente")
 
@@ -148,11 +150,16 @@ def modificar_peliculas(lista_peliculas: list[dict]):
 
             case "6":
                 break
-
+            
+            case  _:
+                print("Valor inexistente, ingrese una opción valida")
+            
         continuar = input("¿Desea modificar otro dato? (si/no): ").lower().strip()
         if continuar != "si":
             break
-
+        
+        opcion_modificar = ""
+        
     if modificaciones:
         print("Se realizaron las siguientes modificaciones:\n")
         for modificacion in modificaciones:
@@ -160,5 +167,6 @@ def modificar_peliculas(lista_peliculas: list[dict]):
     
     if not modificaciones:
         print("No se realizaron modificaciones.")
+
 
     return True
