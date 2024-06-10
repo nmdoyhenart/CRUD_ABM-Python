@@ -9,8 +9,7 @@ from peliculas import *
 from inputs import *
 
 def elegir_opcion():
-    opcion = input("""Menu CINE\n1- Ingresar una nueva película\n2- Modificar película\n3- Eliminar película\n4- Mostrar películas\n5- Ordenar películas\n6- Buscar película por titulo\n7- Calcular duración y cantidad de películas\n8- Calcular porcentajes\n9- Salir del programa
-""")
+    opcion = input("""Menu CINE\n1- Ingresar una nueva película\n2- Modificar película\n3- Eliminar película\n4- Mostrar películas\n5- Ordenar películas\n6- Buscar película por titulo\n7- Calcular duración y cantidad de películas\n8- Calcular porcentajes\n9- Salir del programa\nElije una opción: """)
 
     return opcion
 

@@ -4,18 +4,6 @@ Apellido: Doyhenart
 
 Parcial 07/03
 """""
-def crear_pelicula(id: int, titulo: str, genero: str, año_lanzamiento: int, duracion: int, clasificacion: bool):
-    diccionario_empleado = {
-        "ID": id,
-        "Titulo": titulo,
-        "Genero": genero,
-        "Año lanzamiento": año_lanzamiento,
-        "Duracion": duracion,
-        "Clasificacion": clasificacion
-    }
-
-    return diccionario_empleado
-
 def eliminar_pelicula(lista_peliculas: list[dict]):
     titulo_pelicula_eliminada = input("Ingrese el titulo de la pelicula a eliminar: ").capitalize()
     pelicula_eliminada = None
@@ -107,14 +95,14 @@ def muestreo_peliculas(lista_peliculas):
         
         break
 
-def ordenar_lista_ascendente(lista_peliculas: list[dict], llave):
+def ordenar_lista_ascendente(lista_peliculas: list[dict], llave: str):
     n = len(lista_peliculas)
     for i in range(n):
         for j in range(0, n-i-1):
             if lista_peliculas[j][llave] > lista_peliculas[j+1][llave]:
                 lista_peliculas[j], lista_peliculas[j+1] = lista_peliculas[j+1], lista_peliculas[j]
 
-def ordenar_lista_descendente(lista_peliculas: list[dict], llave):
+def ordenar_lista_descendente(lista_peliculas: list[dict], llave: str):
     n = len(lista_peliculas)
     for i in range(n):
         for j in range(0, n-i-1):
@@ -127,7 +115,7 @@ def ordenar_peliculas(lista_peliculas: list[dict]):
             
             match opcion:
                     case "1":
-                        opcion_asc_desc = input("Ingrese de que manera quiere ordenar\n1- Ascendente\n2- Descendente\n")
+                        opcion_asc_desc = input("Ingrese de que manera quiere ordenar\n1- Ascendente\n2- Descendente\nElija una opción: ")
                         match opcion_asc_desc:
                             case "1":
                                 ordenar_lista_ascendente(lista_peliculas, "Titulo")
@@ -141,14 +129,14 @@ def ordenar_peliculas(lista_peliculas: list[dict]):
                             case "2":
                                 ordenar_lista_descendente(lista_peliculas, "Genero")
                     case "3":
-                        opcion_asc_desc = input("Ingrese de que manera quiere ordenar\n1- Ascendente\n2- Descendente")
+                        opcion_asc_desc = input("Ingrese de que manera quiere ordenar\n1- Ascendente\n2- Descendente\nElija una opción: ")
                         match opcion_asc_desc:
                             case "1":
                                 ordenar_lista_ascendente(lista_peliculas, "Año lanzamiento")
                             case "2":
                                 ordenar_lista_descendente(lista_peliculas, "Año lanzamiento")
                     case "4":
-                        opcion_asc_desc = input("Ingrese de que manera quiere ordenar\n1- Ascendente\n2- Descendente")
+                        opcion_asc_desc = input("Ingrese de que manera quiere ordenar\n1- Ascendente\n2- Descendente\nElija una opción: ")
                         match opcion_asc_desc:
                             case "1":
                                 ordenar_lista_ascendente(lista_peliculas, "Duracion")
