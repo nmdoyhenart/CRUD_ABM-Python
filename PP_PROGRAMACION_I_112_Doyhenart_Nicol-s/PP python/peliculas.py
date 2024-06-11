@@ -328,12 +328,13 @@ def porcentaje(lista_peliculas: list[dict]):
 
             case "2":
                 auxiliar = 0
-                for pelicula in range(len(lista_peliculas)):
-                    auxiliar += lista_peliculas[pelicula]["Clasificacion"]
+                for pelicula in lista_peliculas:
+                    if lista_peliculas[pelicula]["Clasificacion"] == ["Clasificacion"]:
+                        auxiliar += 1
 
                 auxiliar_porcentaje = (auxiliar / len(lista_peliculas)) * 100
-                print(f"EL {auxiliar_porcentaje}% de películas son ATP.")
-                
+                print(f"El {auxiliar_porcentaje}% de películas son ATP.")
+                                
             case  _:
                 print("Valor inexistente, ingrese una opción valida")               
         break

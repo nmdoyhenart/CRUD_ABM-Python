@@ -35,8 +35,8 @@ def leer_peliculas(lista_peliculas: list[dict]):
                 "Genero": registro[2],
                 "Año lanzamiento": int(registro[3]),
                 "Duracion": int(registro[4]),
-                "Clasificacion": registro[5],
-                "Plataforma": bool(registro[6])
+                "Clasificacion": bool(registro[5]),
+                "Plataforma": registro[6]
             }
 
             lista_peliculas.append(nueva_lista)

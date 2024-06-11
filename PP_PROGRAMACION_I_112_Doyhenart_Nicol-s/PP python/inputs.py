@@ -73,13 +73,6 @@ def ingresar_peliculas(lista_peliculas: list[dict]) -> None:
                 print("Ingrese una plataforma existente.")
             
             plataforma = input("Ingrese la plataforma en la que se encuentra la película: ").capitalize().strip()
-            # plataforma = input("Ingrese una plataforma válida: ").capitalize().strip()
-                
-            # continuar = input("¿Desea ingresar otra plataforma? (si/no): ").lower().strip()
-            # if not continuar:
-            #     print("ERROR")
-            # elif continuar != 'si':
-            #     break
 
         nueva_pelicula = {
             "ID": id,
