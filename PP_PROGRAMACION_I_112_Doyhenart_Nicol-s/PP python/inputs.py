@@ -15,7 +15,6 @@ def titulo_duplicado(lista_peliculas: list[dict], titulo: str) -> bool:
 
     Returns: -> bool; para hacer la comprobación.
     """
-
     for pelicula in lista_peliculas:
         if pelicula["Titulo"] == titulo:
             return True  
@@ -43,12 +42,12 @@ def ingresar_peliculas(lista_peliculas: list[dict]) -> None:
             titulo = input("Ingrese un título válido: ").capitalize().strip()
 
         genero = input("Ingrese el género de la película: ").capitalize().strip()
-        while genero not in generos:
+        while genero not in generos or genero.isspace():
             print("ERROR")
             genero = input("Ingrese un género válido: ").capitalize().strip()
         
         año_lanzamiento = int(input("Ingrese el año de lanzamiento: "))
-        while año_lanzamiento < 1888 or año_lanzamiento > 2024:
+        while not año_lanzamiento or not 1888 <= año_lanzamiento <= 2024:
             print("ERROR")
             año_lanzamiento = int(input("Ingrese una fecha válida: "))
         
@@ -58,7 +57,7 @@ def ingresar_peliculas(lista_peliculas: list[dict]) -> None:
             duracion = int(input("Ingrese una duración válida: "))
 
         clasificacion = input("¿La película ingresada es ATP? (si/no): ").lower().strip()
-        while clasificacion != 'si' and clasificacion != 'no':
+        while clasificacion != 'si' and clasificacion != 'no' or clasificacion.isspace():
             print("ERROR")
             clasificacion = input("Ingrese una respuesta válida (si/no): ").lower().strip()
         clasificacion = clasificacion == 'si'
@@ -74,7 +73,9 @@ def ingresar_peliculas(lista_peliculas: list[dict]) -> None:
         lista_peliculas.append(nueva_pelicula)
 
         continuar = input("¿Desea ingresar otra película? (si/no): ").lower().strip()
-        if continuar != 'si':
+        if not continuar or continuar.isspace():
+            print("ERROR")
+        elif continuar != 'si':
             break
 
 def modificar_peliculas(lista_peliculas: list[dict]):
@@ -83,7 +84,6 @@ def modificar_peliculas(lista_peliculas: list[dict]):
     Args:
         lista_peliculas (list[dict]): Diccionario con información de las películas.
     """
-
     titulo_pelicula = input("Ingrese el título de la película a modificar: ").capitalize().strip()
 
     pelicula_existente = None
@@ -113,24 +113,24 @@ def modificar_peliculas(lista_peliculas: list[dict]):
                         print("El título ya existe. Ingrese un título diferente.")
                     else:
                         pelicula_existente["Titulo"] = nuevo_titulo
-                        modificaciones.append("-Título modificado exitosamente")
+                        modificaciones.append("-Títuloe")
                         break
                 
             case "2":
                 nuevo_genero = input("Ingrese el nuevo género: ").capitalize().strip()
-                while nuevo_genero not in generos:
+                while nuevo_genero not in generos or nuevo_genero.isspace():
                     print("ERROR")
                     nuevo_genero = input("Ingrese un género válido: ").capitalize().strip()
                 pelicula_existente["Genero"] = nuevo_genero
-                modificaciones.append("-Género modificado exitosamente")
+                modificaciones.append("-Género")
 
             case "3":
-                nuevo_año_lanzamiento = input("Ingrese el nuevo año de lanzamiento: ")
-                while not nuevo_año_lanzamiento.isdigit() or not 1888 <= int(nuevo_año_lanzamiento) <= 2024:
+                nuevo_año_lanzamiento = int(input("Ingrese el nuevo año de lanzamiento: "))
+                while not nuevo_año_lanzamiento.isdigit() or not 1888 <= nuevo_año_lanzamiento <= 2024:
                     print("ERROR")
                     nuevo_año_lanzamiento = input("Ingrese un año válido: ")
                 pelicula_existente["Año lanzamiento"] = int(nuevo_año_lanzamiento)
-                modificaciones.append("-Año de lanzamiento modificado exitosamente")
+                modificaciones.append("-Año de lanzamiento")
 
             case "4":
                 nueva_duracion = int(input("Ingrese la duración de la película en minutos: "))
@@ -138,15 +138,15 @@ def modificar_peliculas(lista_peliculas: list[dict]):
                     print("ERROR")
                     nueva_duracion = int(input("Ingrese una duración válida: "))
                 pelicula_existente["Duracion"] = nueva_duracion
-                modificaciones.append("-Duración modificada exitosamente")
+                modificaciones.append("-Duración")
 
             case "5":
                 nueva_clasificacion = input("¿La película ingresada es ATP? (si/no): ").lower().strip()
-                while nueva_clasificacion not in ["si", "no"]:
+                while nueva_clasificacion not in ["si", "no"] or nueva_clasificacion.isspace():
                     print("ERROR")
                     nueva_clasificacion = input("Ingrese una respuesta válida (si/no): ").lower().strip()
                 pelicula_existente["Clasificacion"] = (nueva_clasificacion == "si")
-                modificaciones.append("-Clasificación modificada exitosamente")
+                modificaciones.append("-Clasificación")
 
             case "6":
                 break
@@ -155,18 +155,14 @@ def modificar_peliculas(lista_peliculas: list[dict]):
                 print("Valor inexistente, ingrese una opción valida")
             
         continuar = input("¿Desea modificar otro dato? (si/no): ").lower().strip()
-        if continuar != "si":
+        if not continuar or continuar.isspace():
+            print("ERROR")
+        elif continuar != 'si':
             break
-        
-        opcion_modificar = ""
         
     if modificaciones:
         print("Se realizaron las siguientes modificaciones:\n")
         for modificacion in modificaciones:
             print(modificacion)
-    
-    if not modificaciones:
+    elif not modificaciones:
         print("No se realizaron modificaciones.")
-
-
-    return True
