@@ -35,12 +35,12 @@ def mostrar_pelicula(pelicula: list[dict]):
         auxiliar = "Si"
     else:
         auxiliar = "No"
-    print("***********************************************************************")
-    encabezado = f"{'Título':<20}{'Género':<20}{'Año lanzamiento':<20}{'Duración':<10}{'ATP':<5}"
+    print("*******************************************************************************************")
+    encabezado = f"{'Título':<20}{'Género':<20}{'Año lanzamiento':<20}{'Duración':<10}{'ATP':<5}{'Plataforma':<15}"
     print(encabezado)
-    print(f"{pelicula['Titulo']:<20}{pelicula['Genero']:<20}{pelicula['Año lanzamiento']:<20}{pelicula['Duracion']:<10}{auxiliar:<5}")
-    print("***********************************************************************")
-
+    print(f"{pelicula['Titulo']:<20}{pelicula['Genero']:<20}{pelicula['Año lanzamiento']:<20}{pelicula['Duracion']:<10}{auxiliar:<5}{pelicula['Plataforma']:<15}")
+    print("*******************************************************************************************")
+        
 def mostrar_todas(lista_peliculas: list[dict]):
     """Muestra todas las películas en la lista
 
@@ -110,7 +110,18 @@ def mostrar_no_atp(lista_peliculas: list[dict]):
             encontrado = True
 
     if not encontrado:
-        print("Todas las peliculas del catalgo son ATP")
+        print("Todas las peliculas del catalogo son ATP")
+
+def mostrar_plataforma(lista_peliculas: list[dict]):
+    plataforma = input("Ingrese la plataforma que busca: ").capitalize()
+    encontrado = False
+    for pelicula in lista_peliculas:
+        if pelicula["Plataforma"] == plataforma:
+            mostrar_pelicula(pelicula)
+            encontrado = True
+
+    if not encontrado:
+        print("Plataforma no disponible en catalogo.")
 
 def muestreo_peliculas(lista_peliculas: list[dict]):
     """Menu de muestreo y aplicación de funciones anteriores.
@@ -119,7 +130,7 @@ def muestreo_peliculas(lista_peliculas: list[dict]):
         lista_peliculas: list[dict]: Diccionario que contiene la información de las películas.
     """
     for pelicula in lista_peliculas:
-        opciones = input("""¿Como desea ver nuestro catalogo?\n1- Todas las películas disponibles\n2- Género especifico\n3- Año de lanzamiento especifico\n4- Películas ATP\n5- Películas NO ATP\nElija una opción: """)
+        opciones = input("""¿Como desea ver nuestro catalogo?\n1- Todas las películas disponibles\n2- Género especifico\n3- Año de lanzamiento especifico\n4- Películas ATP\n5- Películas NO ATP\n6- Plataforma especifica\nElija una opción: """)
 
         match opciones:
             case "1":
@@ -132,6 +143,8 @@ def muestreo_peliculas(lista_peliculas: list[dict]):
                 mostrar_atp(lista_peliculas)
             case "5":
                 mostrar_no_atp(lista_peliculas)
+            case "6":
+                mostrar_plataforma(lista_peliculas)
             case  _:
                 print("Valor inexistente, ingrese una opción valida")
         break
